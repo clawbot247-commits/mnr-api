@@ -175,9 +175,12 @@ Pay special attention to:
    - Example: if you see "7/12/25", output exactly "7/12/25" — do not truncate to "7/2/25".
 
 7. **HOW IT HAPPENED — MANDATORY STRUCTURED OUTPUT**:
-   Find the field "How it happened?" and output EXACTLY:
-   HOW_IT_HAPPENED: [whatever is written, even if just "u/n", "unknown", or a single word]
-   - Do NOT skip this even if the answer is short (1-3 chars like "u/n" is valid).
+   Find the field "How it happened?" on the patient intake form and output EXACTLY:
+   HOW_IT_HAPPENED: [copy the patient's handwritten answer verbatim]
+   - This describes the CAUSE or MECHANISM of injury (e.g. "sports injury", "car accident", "work related", "gradual onset", "unknown", "u/n")
+   - Copy whatever the patient wrote, even if short (1-3 chars like "u/n" is valid)
+   - Do NOT capture state abbreviations (CA, WA, etc.) or address text — this must be a cause description
+   - Do NOT leave this blank if there is ANY text in that field
    - If truly blank, output: HOW_IT_HAPPENED: (blank)
 
 8. **SYMPTOM FREQUENCY — MANDATORY STRUCTURED OUTPUT**:
@@ -207,13 +210,17 @@ Pay special attention to:
     - "Hours_✓_" or "Hours_X_" = Hours is selected → look at "if so, how many" after Hours for the number
     - "Days_✓_" or "Days_X_" = Days is selected → look at "if so, how many" after Days for the number
     - The number field may have text like "one", "1", "2", "2/3", or other handwritten values
+    - ALWAYS convert word numbers to digits: "one"→1, "two"→2, "three"→3, "half"→0.5
+    - ALWAYS include the unit (hours or days) — NEVER output just a number or word alone
     Output EXACTLY one line:
-    RELIEF_DURATION: [number] [hours or days]
+    RELIEF_DURATION: [digit] [hours or days]
     Examples:
       Hours ✓, if so how many = "one" → RELIEF_DURATION: 1 hour
       Hours ✓, if so how many = "2" → RELIEF_DURATION: 2 hours
       Days ✓, if so how many = "3" → RELIEF_DURATION: 3 days
       Hours ✓, if so how many = "2/3" → RELIEF_DURATION: 2-3 hours
+      Hours ✓, if so how many = "one" → RELIEF_DURATION: 1 hour  ← NOT "One" or "one"
+    - WRONG: RELIEF_DURATION: One   WRONG: RELIEF_DURATION: one   WRONG: RELIEF_DURATION: 1
     - If neither is marked or value is illegible, output: RELIEF_DURATION: (blank)
 
 11. **SUBSCRIBER ID VERIFICATION — MANDATORY TWO-PASS CHECK**:

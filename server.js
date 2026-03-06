@@ -207,19 +207,20 @@ Pay special attention to:
 10. **RELIEF DURATION — MANDATORY STRUCTURED OUTPUT**:
     Find "How long does relief last?" — the format is: "Hours___ if so, how many___ Days___ if so, how many___"
     These use UNDERLINES (not boxes). The patient marks an X or checkmark (✓, ✗, √) ON the underline next to "Hours" or "Days".
-    - "Hours_✓_" or "Hours_X_" = Hours is selected → look at "if so, how many" after Hours for the number
-    - "Days_✓_" or "Days_X_" = Days is selected → look at "if so, how many" after Days for the number
-    - The number field may have text like "one", "1", "2", "2/3", or other handwritten values
-    - ALWAYS convert word numbers to digits: "one"→1, "two"→2, "three"→3, "half"→0.5
-    - ALWAYS include the unit (hours or days) — NEVER output just a number or word alone
+    - "Hours_✓_" or "Hours_X_" = Hours is selected → look at "if so, how many" after Hours for the FULL handwritten answer
+    - "Days_✓_" or "Days_X_" = Days is selected → look at "if so, how many" after Days for the FULL handwritten answer
+    - CRITICAL: Capture the ENTIRE "if so, how many" field — patients often write qualifiers like "on and off", "sometimes", "2-3", "one", etc.
+    - Read ALL text written in that field, not just the first word
+    - ALWAYS convert word numbers to digits: "one"→1, "two"→2, "three"→3
+    - ALWAYS include the unit (hours or days) at the end
     Output EXACTLY one line:
-    RELIEF_DURATION: [digit] [hours or days]
+    RELIEF_DURATION: [full answer] [hours or days]
     Examples:
       Hours ✓, if so how many = "one" → RELIEF_DURATION: 1 hour
       Hours ✓, if so how many = "2" → RELIEF_DURATION: 2 hours
+      Hours ✓, if so how many = "on and off 2-3" → RELIEF_DURATION: on and off 2-3 hours
+      Hours ✓, if so how many = "2-3" → RELIEF_DURATION: 2-3 hours
       Days ✓, if so how many = "3" → RELIEF_DURATION: 3 days
-      Hours ✓, if so how many = "2/3" → RELIEF_DURATION: 2-3 hours
-      Hours ✓, if so how many = "one" → RELIEF_DURATION: 1 hour  ← NOT "One" or "one"
     - WRONG: RELIEF_DURATION: One   WRONG: RELIEF_DURATION: one   WRONG: RELIEF_DURATION: 1
     - If neither is marked or value is illegible, output: RELIEF_DURATION: (blank)
 

@@ -213,6 +213,7 @@ Pay special attention to:
     - Read ALL text written in that field, not just the first word
     - ALWAYS convert word numbers to digits: "one"→1, "two"→2, "three"→3
     - ALWAYS include the unit (hours or days) at the end
+    - If BOTH Hours and Days are marked, output ONLY the Hours answer (Hours takes priority)
     Output EXACTLY one line:
     RELIEF_DURATION: [full answer] [hours or days]
     Examples:

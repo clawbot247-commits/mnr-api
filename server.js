@@ -221,7 +221,9 @@ Pay special attention to:
       Hours ✓, if so how many = "on and off 2-3" → RELIEF_DURATION: on and off 2-3 hours
       Hours ✓, if so how many = "2-3" → RELIEF_DURATION: 2-3 hours
       Days ✓, if so how many = "3" → RELIEF_DURATION: 3 days
-    - WRONG: RELIEF_DURATION: One   WRONG: RELIEF_DURATION: one   WRONG: RELIEF_DURATION: 1
+      Hours ✓, if so how many text appears to say "on + off" near numbers → capture the full phrase e.g. "on and off 2-3 hours"
+    - Do NOT round or approximate (e.g. do NOT output "0.5 hours" for text that says "on and off 2-3")
+    - WRONG: RELIEF_DURATION: One   WRONG: RELIEF_DURATION: one   WRONG: RELIEF_DURATION: 1   WRONG: RELIEF_DURATION: 0.5 hours
     - If neither is marked or value is illegible, output: RELIEF_DURATION: (blank)
 
 11. **SUBSCRIBER ID VERIFICATION — MANDATORY TWO-PASS CHECK**:
